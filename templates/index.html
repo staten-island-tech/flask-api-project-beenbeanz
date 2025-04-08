@@ -7,8 +7,11 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body>
-        <form method="POST">
-            <input type="text" id="searchBooks" placeholder="Search books">
-        </form>
+        <div>
+            <p>{{artworkList}}</p>
+            {% for i in artworkList%}
+            <img src="https://api.artic.edu/api/v1/artworks/{{artworkList.id}}?fields=id,title,image_id">
+            {% endfor %}
+        </div>
     </body>
 </html>
