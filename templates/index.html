@@ -8,10 +8,17 @@
     </head>
     <body>
         <div>
-          
-            {% for i in artworkList%}
-            <img src="https://api.artic.edu/api/v1/artworks/{{artworkList.id}}?fields=id,title,image_id">
+            {% for artwork in artworkList%}
+            
+            <p>{{ artwork[imageData] }}</p>
+            <p>{{ imageData["data"]["image_id"] }}</p>
+            <p>{{ imageData["config"]["iiif_url"] }}</p>
+            <p>{{ artwork["title"] }}</p>
+            <p>{{ artwork["artist_display"] }}</p>
+            <p>{{ artwork["id"] }}</p>
+            <img src="">
             {% endfor %}
+            
         </div>
     </body>
 </html>
