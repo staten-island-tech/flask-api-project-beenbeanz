@@ -9,16 +9,11 @@
     <body>
         <div>
             {% for artwork in artworkList%}
-            
-            <p>{{ artwork[imageData] }}</p>
-            <p>{{ imageData["data"]["image_id"] }}</p>
-            <p>{{ imageData["config"]["iiif_url"] }}</p>
-            <p>{{ artwork["title"] }}</p>
-            <p>{{ artwork["artist_display"] }}</p>
-            <p>{{ artwork["id"] }}</p>
-            <img src="">
-            {% endfor %}
-            
+            <p id="title"><b>{{ artwork["title"] }}</b></p>
+            <p id="artist">{{ artwork["artist_display"] }}</p>
+            <!--<p id="artworkId">{{ artwork["id"] }}</p>-->
+            <img src="https://www.artic.edu/iiif/2/{{artwork['image_id']}}/full/843,/0/default.jpg" alt="artwork photo">
+            {% endfor %} 
         </div>
     </body>
 </html>
