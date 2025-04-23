@@ -10,9 +10,9 @@
         <div>
             {% for artwork in artworkList%}
             <p id="title"><b>{{ artwork["title"] }}</b></p>
-            <p id="artist">{{ artwork["artist_display"] }}</p>
+            <!--<p id="artist">{{ artwork["artist_display"] }}</p>-->
             <!--<p id="artworkId">{{ artwork["id"] }}</p>-->
-            <img src="https://www.artic.edu/iiif/2/{{artwork['image_id']}}/full/843,/0/default.jpg" alt="artwork photo">
+            <a class="photoLinks"><img class='artworkPhoto' src="https://www.artic.edu/iiif/2/{{artwork['image_id']}}/full/843,/0/default.jpg" alt="artwork photo"></a>
             {% endfor %} 
         </div>
     </body>
