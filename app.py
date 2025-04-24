@@ -10,13 +10,21 @@ def home():
     return render_template("index.html", artworkList=artworkList)
 
 @app.route("/artworks/<int:id>")
-def artworkDetail():
-    response = requests.get("/api/v1/artworks/{id}")
+def artworkDetail(id):
+    response = requests.get(f"https://api.artic.edu/api/v1/artworks/{id}")
     data = response.json()
+    artworkData = data.get("data", {})
 
-    title = data.get('title')
-    artist = data.get('artist_display')
-    origin = data.get('place_of_origin')
-    
-app.run(debug=True)
+    title = artworkData.get('title')
+    artist = artworkData.get('artist_display')
+    origin = artworkData.get('place_of_origin')
+    imageUrl = f"https://www.artic.edu/iiif/2/{id}/full/843,/0/default.jpg" 
+    return render_template("artwork.html", artwork = {
+        'title': title, 
+        'artist': artist, 
+        'origin': origin,
+        'image' : imageUrl
+    })
+if __name__ == '__main__':
+    app.run(debug=True)
 
