@@ -18,13 +18,15 @@ def artworkDetail(id):
     title = artworkData.get('title')
     artist = artworkData.get('artist_display')
     origin = artworkData.get('place_of_origin')
-    imageUrl = f"https://www.artic.edu/iiif/2/{id}/full/843,/0/default.jpg" 
+    imageId = artworkData.get('image_id')
+    date = artworkData.get('date_start')
+    imageUrl = f"https://www.artic.edu/iiif/2/{imageId}/full/843,/0/default.jpg" 
     return render_template("artwork.html", artwork = {
         'title': title, 
         'artist': artist, 
         'origin': origin,
-        'image' : imageUrl
+        'image' : imageUrl,
+        'date': date
     })
 if __name__ == '__main__':
     app.run(debug=True)
-
