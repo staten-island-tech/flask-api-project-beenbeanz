@@ -6,8 +6,11 @@
 </head>
 <body>
     <h1 class="title">{{ artwork.title }}</h1>
-    <h3 class="artist">{{ artwork.artist }}</h3>
-    <h3>{{ artwork.date }}</h3>
+    <h3 class="artist">Made by: {{ artwork.artist }}</h3>
+    <h3>Date: {{ artwork.date }}</h3>
+    <p>{{ artwork.description }}</p>
+    <p>Artwork medium: {{ artwork.medium }}</p>
+    <p> Department(s): {{ artwork.department }}</p>
     <img class='artworkPhoto' src="{{ artwork.image }}" alt="artwork photo">
 </body>
 </html>
