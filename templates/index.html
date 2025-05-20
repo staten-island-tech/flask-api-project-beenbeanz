@@ -3,16 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Books</title>
+        <title>Artworks</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body>
         <div>
+            <select> 
+                <option value="">select year range</option>
+                <option value="1900-2025" onclick='a()'>1900-2025</option>
+                <option value="1800-1899" onclick='a()'>1800-1899</option>
+                <option value="1700-1799" onclick='a()'>1700-1799</option>
+            </select>
             {% for artwork in artworkList%}
             <p id="title"><b>{{ artwork["title"] }}</b></p>
-            <!--<p id="artist">{{ artwork["artist_display"] }}</p>-->
             <a class="photoLinks" href="{{ url_for('artworkDetail', id=artwork['id']) }}"><img class='artworkPhoto' src="https://www.artic.edu/iiif/2/{{artwork['image_id']}}/full/843,/0/default.jpg" alt="artwork photo"></a>
             {% endfor %} 
         </div>
+
+        <script>
+            async function a(){
+                try{
+                    const response = fetch('https://api.artic.edu/api/v1/artworks');
+                    if(!response.ok) {throw new Error('lol you suck get better');}
+                    const json = await response.json();
+                    console.log(json)
+                }
+                catch(error) {console.log(error.message);}
+               
+            }
+        </script>
     </body>
 </html>
