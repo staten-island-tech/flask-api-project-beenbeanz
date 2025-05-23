@@ -8,8 +8,8 @@
     </head>
     <body>
         <div>
-            <select> 
-                <option value="">select year range</option>
+            <select onchange="filterByYear()"> 
+                <option value="" >select year range</option>
                 <option value="1900-2025" onclick='a()'>1900-2025</option>
                 <option value="1800-1899" onclick='a()'>1800-1899</option>
                 <option value="1700-1799" onclick='a()'>1700-1799</option>
@@ -21,15 +21,11 @@
         </div>
 
         <script>
-            async function a(){
-                try{
-                    const response = fetch('https://api.artic.edu/api/v1/artworks');
-                    if(!response.ok) {throw new Error('lol you suck get better');}
-                    const json = await response.json();
-                    console.log(json)
-                }
-                catch(error) {console.log(error.message);}
-               
+           function filterByYear() {
+            const yearRange = document.getElementById('yearSelect').value;
+            if (yearRange) {
+                window.location.href = `/?range=${yearRange}`;
+            }
             }
         </script>
     </body>
