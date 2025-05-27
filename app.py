@@ -6,36 +6,24 @@ app = Flask(__name__)
 def home():
     year_range = request.args.get("range")
     artworkList = []
+    start_year = 0
+    end_year = 0
 
-    try:
-        url = "https://api.artic.edu/api/v1/artworks"
-        params = {
-            "fields": "id,title,image_id,artist_display,date_display,main_reference_number,date_start",
-            "page": 1,
-            "limit": 100
-        }
-
+    try: 
         if year_range:
             start_year, end_year = map(int, year_range.split("-"))
-            params["date_start"] = f"{start_year}"
-            params["date_end"] = f"{end_year}"
-
-        response = requests.get(url, params=params)
+        
+        response = requests.get("https://api.artic.edu/api/v1/artworks?fields=id,title,image_id,date_start,artist_display,date_display,main_reference_numb&page=1&limit=50")
         data = response.json()
-        artworkList = data.get("data", [])
+
+        for artwork in data["data"]:
+            if artwork['date_start'] > int(start_year) and artwork['date_start'] < int(end_year):
+                artworkList.append(artwork)
 
     except Exception as e:
         print(f"Artwork not available. Error: {e}")
 
     return render_template("index.html", artworkList=artworkList)
-    """ try:
-        response = requests.get("https://api.artic.edu/api/v1/artworks?fields=id,title,image_id,artist_display,date_display,main_reference_numb&page=1&limit=50")
-        data = response.""json""()
-    except:
-        print("Artwork not available.")
-    else:
-        artworkList = data["data"]
-    return render_template("index.html", artworkList=artworkList)"""
 
 @app.route("/artworks/<int:id>")
 def artworkDetail(id):

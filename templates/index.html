@@ -8,11 +8,11 @@
     </head>
     <body>
         <div>
-            <select onchange="filterByYear()"> 
+            <select> 
                 <option value="" >select year range</option>
-                <option value="1900-2025" onclick='a()'>1900-2025</option>
-                <option value="1800-1899" onclick='a()'>1800-1899</option>
-                <option value="1700-1799" onclick='a()'>1700-1799</option>
+                <option value="1900-2025">1900-2025</option>
+                <option value="1800-1899">1800-1899</option>
+                <option value="1700-1799">1700-1799</option>
             </select>
             {% for artwork in artworkList%}
             <p id="title"><b>{{ artwork["title"] }}</b></p>
