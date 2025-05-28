@@ -8,16 +8,19 @@
     </head>
     <body>
         <div>
-            <select> 
-                <option value="" >select year range</option>
-                <option value="1900-2025">1900-2025</option>
-                <option value="1800-1899">1800-1899</option>
-                <option value="1700-1799">1700-1799</option>
-            </select>
-            {% for artwork in artworkList%}
-            <p id="title"><b>{{ artwork["title"] }}</b></p>
-            <a class="photoLinks" href="{{ url_for('artworkDetail', id=artwork['id']) }}"><img class='artworkPhoto' src="https://www.artic.edu/iiif/2/{{artwork['image_id']}}/full/843,/0/default.jpg" alt="artwork photo"></a>
-            {% endfor %} 
+            <form method="get" action="/">
+                <label for="year_range">Select year range:</label>
+                <select name="range" id="year_range" onchange="this.form.submit()"> 
+                    <option value="" >select year range</option>
+                    <option value="1900-2025">1900-2025</option>
+                    <option value="1800-1899">1800-1899</option>
+                    <option value="1700-1799">1700-1799</option>
+                </select>
+                {% for artwork in artworkList%}
+                <p id="title"><b>{{ artwork["title"] }}</b></p>
+                <a class="photoLinks" href="{{ url_for('artworkDetail', id=artwork['id']) }}"><img class='artworkPhoto' src="https://www.artic.edu/iiif/2/{{artwork['image_id']}}/full/843,/0/default.jpg" alt="artwork photo"></a>
+                {% endfor %} 
+            </form>
         </div>
 
         <script>

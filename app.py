@@ -4,12 +4,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    
     year_range = request.args.get("range")
     artworkList = []
-    start_year = 0
-    end_year = 0
 
     try: 
+        start_year, end_year = 0, 9999
         if year_range:
             start_year, end_year = map(int, year_range.split("-"))
         
@@ -17,7 +17,8 @@ def home():
         data = response.json()
 
         for artwork in data["data"]:
-            if artwork['date_start'] > int(start_year) and artwork['date_start'] < int(end_year):
+            date_start = artwork.get("date_start")
+            if date_start is not None and start_year <= date_start <= end_year:
                 artworkList.append(artwork)
 
     except Exception as e:
