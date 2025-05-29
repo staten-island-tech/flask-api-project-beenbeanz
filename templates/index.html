@@ -11,14 +11,30 @@
             <form method="get" action="/">
                 <label for="year_range">Select year range:</label>
                 <select name="range" id="year_range" onchange="this.form.submit()"> 
-                    <option value="" >select year range</option>
+                    <option value="1000-2025">all years</option>
                     <option value="1900-2025">1900-2025</option>
                     <option value="1800-1899">1800-1899</option>
                     <option value="1700-1799">1700-1799</option>
+                    <option value="1600-1699">1600-1699</option>
+                    <option value="1500-1599">1500-1599</option>
+                    <option value="1400-1499">1400-1499</option>
+                    <option value="1300-1399">1300-1399</option>
+                    <option value="1200-1299">1200-1299</option>
+                    <option value="1100-1199">1100-1199</option>
+                    <option value="1000-1099">1000-1099</option>
+                    <option value="900-999">900-999</option>
+                    <option value="800-899">800-899</option>
+                    <option value="700-799">700-799</option>
+                    <option value="600-699">600-699</option>
+                    <option value="500-599">500-599</option>
+                    <option value="400-499">400-499</option>
+                    <option value="300-399">300-399</option>
+                    <option value="200-299">200-299</option>
+                    <option value="100-199">100-199</option>
                 </select>
                 {% for artwork in artworkList%}
-                <p id="title"><b>{{ artwork["title"] }}</b></p>
-                <a class="photoLinks" href="{{ url_for('artworkDetail', id=artwork['id']) }}"><img class='artworkPhoto' src="https://www.artic.edu/iiif/2/{{artwork['image_id']}}/full/843,/0/default.jpg" alt="artwork photo"></a>
+                <p class="title"><b>{{ artwork["title"] }}</b></p>
+                <a class="photoLinks" href="{{ url_for('artworkDetail', id=artwork['id']) }}"><img class='photo' src="https://www.artic.edu/iiif/2/{{artwork['image_id']}}/full/843,/0/default.jpg" alt="artwork photo"></a>
                 {% endfor %} 
             </form>
         </div>
