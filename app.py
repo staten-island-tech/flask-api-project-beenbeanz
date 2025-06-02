@@ -9,23 +9,17 @@ def home():
     artworkList = []
 
     try: 
-        
-
         start_year, end_year = 0, 9999
-        if year_range == '':
-            response = requests.get("https://api.artic.edu/api/v1/artworks?fields=id,title,image_id,date_start,artist_display,date_display,main_reference_numb&page=1&limit=50")
-            data = response.json()
-            artworkList.append(data['data'])
-        else:    
-            response = requests.get("https://api.artic.edu/api/v1/artworks?fields=id,title,image_id,date_start,artist_display,date_display,main_reference_numb&page=1&limit=50")
-            data = response.json()
-            start_year, end_year = map(int, year_range.split("-"))
-        
+       
+        response = requests.get("https://api.artic.edu/api/v1/artworks?fields=id,title,image_id,date_start,artist_display,date_display,main_reference_numb&page=1&limit=50")
+        data = response.json()
+        start_year, end_year = map(int, year_range.split("-"))
+    
 
-            for artwork in data["data"]:
-                date_start = artwork.get("date_start")
-                if date_start is not None and start_year <= date_start <= end_year:
-                    artworkList.append(artwork)
+        for artwork in data["data"]:
+            date_start = artwork.get("date_start")
+            if date_start is not None and start_year <= date_start <= end_year:
+                artworkList.append(artwork)
 
     except Exception as e:
         print(f"Artwork not available. Error: {e}")
